@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom Carion Vignaud - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --dark-bg: #0f172a;
+            --light-bg: #1e293b;
+            --text-light: #e2e8f0;
+            --text-dark: #94a3b8;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--light-bg) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-dark);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            animation: fadeInRight 0.8s ease forwards;
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            width: calc(50% - 30px);
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            left: calc(50% - 20px);
+            z-index: 1;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .project-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-item {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .skill-item:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            color: white;
+            box-shadow: 0 0 10px rgba(59,130,246,0.4);
+        }
+
+
+        /* Contact */
+        .contact {
+            text-align: center;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-date {
+                left: 10px;
+            }
+
+            nav ul {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Scroll reveal trigger */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Tom Carion Vignaud</h1>
+        <p class="subtitle">Étudiant en informatique à EPITA</p>
+        <p>Passionné par l'informatique, le développement et l'entrepreneuriat. En quête permanente de nouveaux défis techniques et créatifs.</p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">Découvrir mes projets</a>
+            <a href="#contact" class="btn btn-secondary">Me contacter</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <h2>À propos de moi</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
+            <p style="margin-bottom: 1.5rem;">
+                Depuis mon enfance, je suis passionné par l'informatique et les nouvelles technologies. 
+                Cet intérêt m'a conduit naturellement vers la classe préparatoire de l'EPITA, où je peux 
+                développer ma curiosité, ma logique et ma créativité.
+            </p>
+            <p style="margin-bottom: 1.5rem;">
+                En dehors de mes études, je suis également un grand amateur de sport, notamment de football, 
+                de ski et de sports mécaniques. Ces activités m'ont appris la discipline, la persévérance 
+                et l'esprit d'équipe, des qualités que j'applique dans mes projets.
+            </p>
+            <p>
+                Je suis une personne motivée, curieuse et déterminée, toujours en quête de nouveaux défis. 
+                J'aime apprendre par la pratique et collaborer avec d'autres passionnés afin de créer 
+                des projets concrets et stimulants.
+            </p>
+        </div>
+    </section>
+
+    <section id="parcours" class="reveal">
+    <h2>Mon Parcours Académique</h2>
+
+    <!-- Timeline -->
+    <div class="timeline">
+
+        <!-- Étape 1 -->
+        <div class="timeline-item">
+            <div class="timeline-date">1</div>
+            <div class="timeline-content">
+                <h3>Lycée Jules Ferry – Cannes 
+                    <span style="color: var(--text-dark); font-size: 0.9rem;">(2022–2024)</span>
+                </h3>
+                <p>
+                    Baccalauréat général avec spécialités <strong>Mathématiques</strong> et <strong>Sciences de l’ingénieur</strong>. 
+                    Ce parcours m’a permis de développer une solide culture scientifique et un goût prononcé pour la logique, 
+                    la rigueur et la conception technique.
+                </p>
+            </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2</div>
+            <div class="timeline-content">
+                <h3>Classe Préparatoire Intégrée – EPITA 
+                    <span style="color: var(--text-dark); font-size: 0.9rem;">(2024–2029)</span>
+                </h3>
+                <p>
+                    Formation d’ingénieur centrée sur l’<strong>algorithmique</strong>, la <strong>programmation</strong> 
+                    (C, Python, C#), les <strong>bases de données</strong> et les <strong>systèmes d’exploitation</strong>. 
+                    Ce cursus exigeant développe la <strong>rigueur</strong>, la <strong>créativité</strong> et la 
+                    <strong>logique</strong> nécessaires à la conception de solutions innovantes dans le domaine de l’informatique.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    </section>
+
+
+
+    <section id="projects" class="reveal">
+    <h2>Mes Projets</h2>
+
+    <!-- Projet personnel -->
+    <div class="project-card" style="margin-bottom: 3rem;">
+        <h3>🏍️ Projet Personnel – Restauration de Moto</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;">
+            <div style="flex: 1; min-width: 280px;">
+                <p>
+                    Dans le cadre d’un projet personnel, j’ai décidé d’acheter une moto à bas coût afin de la réparer, 
+                    l’améliorer et la revendre. Ce projet est né de ma passion pour la mécanique et de mon désir 
+                    d’apprendre à gérer un projet complet, de la planification à la réalisation concrète.
+                </p>
+                <p>
+                    J’ai commencé par rechercher un modèle à retaper, puis j’ai acheté un attelage de voiture et l’ai installé 
+                    moi-même pour la transporter. Après 12 heures de route, j’ai ramené la moto chez moi et entamé la remise en état. 
+                    J’ai déjà changé la batterie, réparé le compteur et installé les nouveaux carénages.
+                </p>
+                <p>
+                    Ce projet m’a permis de développer mon autonomie, ma rigueur et ma capacité à résoudre des problèmes concrets. 
+                    Il m’a aussi appris à planifier les étapes, gérer les coûts et anticiper les imprévus — des compétences 
+                    transférables à mes futurs projets informatiques.
+                </p>
+            </div>
+            <div style="flex: 1; min-width: 280px; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <img src="images/moto1.jpg" alt="Moto avant restauration" style="width: 45%; border-radius: 10px;">
+                <img src="images/moto2.jpg" alt="Moto après restauration" style="width: 45%; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Projet académique -->
+    <div class="project-card">
+        <h3>🎮 Projet Académique – Jeu Vidéo “L’Œuf”</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;">
+            <div style="flex: 1; min-width: 280px;">
+                <p>
+                    Dans le cadre de mon cursus à l’EPITA, j’ai participé à la conception d’un jeu vidéo en équipe intitulé <strong>L’Œuf</strong>. 
+                    Ce projet avait pour but de mettre en pratique nos compétences en programmation, conception et travail collaboratif.
+                </p>
+                <p>
+                    Le principe du jeu repose sur la gestion d’une base que le joueur doit protéger contre des vagues de zombies. 
+                    J’ai personnellement contribué à la programmation du comportement des ennemis, à la gestion des vagues 
+                    et à l’équilibrage de la difficulté. Nous avons utilisé <strong>Unity</strong> pour le développement du prototype.
+                </p>
+                <p>
+                    Cette expérience m’a permis de renforcer mes compétences en logique, en gestion de projet d’équipe et 
+                    en création de mécaniques de jeu cohérentes. Elle a aussi confirmé mon intérêt pour le développement 
+                    de jeux vidéo et mon envie de créer mes propres productions à l’avenir.
+                </p>
+            </div>
+            <div style="flex: 1; min-width: 280px; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <img src="images/oeuf1.jpg" alt="Écran titre du jeu L’Œuf" style="width: 45%; border-radius: 10px;">
+                <img src="images/oeuf2.jpg" alt="Carte du jeu L’Œuf" style="width: 45%; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+    <section id="experience" class="reveal">
+    <h2>Expérience Professionnelle</h2>
+    <div style="background: rgba(30, 41, 59, 0.8); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); text-align: center;">
+
+        <!-- Logo Courtepaille -->
+        <img src="images/courtepaille.png" alt="Logo Courtepaille" style="max-width: 180px; height: auto; margin-bottom: 1.5rem; opacity: 0.95; transition: opacity 0.3s ease;">
+        
+        <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Serveur – Restaurant Courtepaille</h3>
+        <p style="color: var(--text-dark); margin-bottom: 1.5rem;">Été 2024 – 2 mois</p>
+
+        <p style="color: var(--text-dark); line-height: 1.8; max-width: 900px; margin: 0 auto 1.5rem;">
+            Durant l’été, j’ai travaillé pendant deux mois en tant que serveur au restaurant Courtepaille. 
+            Cette expérience, à la fois exigeante et formatrice, m’a permis de développer mes compétences humaines 
+            et professionnelles : accueil des clients, prise de commandes, gestion du stress et collaboration 
+            en équipe dans un environnement dynamique.
+        </p>
+        <p style="color: var(--text-dark); line-height: 1.8; max-width: 900px; margin: 0 auto 1.5rem;">
+            Bien que cette expérience ne soit pas directement liée à l’informatique, elle m’a appris à être rigoureux, 
+            réactif et à garder un haut niveau de professionnalisme — des qualités essentielles que j’applique 
+            désormais dans mes projets techniques et académiques.
+        </p>
+
+        <ul style="text-align: left; display: inline-block; line-height: 2; margin-top: 1rem; color: var(--text-dark);">
+            <li>Gestion du stress et efficacité en période de forte affluence</li>
+            <li>Communication claire et sens du service</li>
+            <li>Travail d’équipe et coordination avec la cuisine</li>
+            <li>Polyvalence et professionnalisme constant</li>
+        </ul>
+    </div>
+    </section>
+
+
+    <section id="skills" class="reveal">
+    <h2>Mes Compétences</h2>
+
+    <div class="skills-container">
+
+        <!-- Compétences techniques -->
+        <div class="skill-category">
+            <h3>💻 Compétences Techniques</h3>
+            <a href="#parcours" class="skill-item">C</a>
+            <a href="#parcours" class="skill-item">Python</a>
+            <a href="#parcours" class="skill-item">C#</a>
+            <a href="#projects" class="skill-item">Unity</a>
+            <a href="#parcours" class="skill-item">Algorithmique</a>
+            <a href="#parcours" class="skill-item">Bases de données</a>
+            <a href="#parcours" class="skill-item">Systèmes d’exploitation</a>
+        </div>
+
+        <!-- Compétences méthodologiques -->
+        <div class="skill-category">
+            <h3>📊 Compétences Méthodologiques</h3>
+            <a href="#projects" class="skill-item">Gestion de projet</a>
+            <a href="#projects" class="skill-item">Travail en équipe</a>
+            <a href="#projects" class="skill-item">Planification</a>
+            <a href="#projects" class="skill-item">Résolution de problèmes</a>
+            <a href="#projects" class="skill-item">Organisation</a>
+        </div>
+
+        <!-- Compétences comportementales -->
+        <div class="skill-category">
+            <h3>🤝 Compétences Comportementales</h3>
+            <a href="#experience" class="skill-item">Communication</a>
+            <a href="#experience" class="skill-item">Adaptabilité</a>
+            <a href="#experience" class="skill-item">Gestion du stress</a>
+            <a href="#projects" class="skill-item">Esprit d’initiative</a>
+            <a href="#experience" class="skill-item">Professionnalisme</a>
+            <a href="#projects" class="skill-item">Créativité</a>
+        </div>
+
+    </div>
+    </section>
+
+
+    <!-- Perspectives Section -->
+    <section class="reveal">
+        <h2>Perspectives d'Avenir</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 2rem;">
+                Mon ambition à long terme est de créer ma propre entreprise dans le domaine de l'informatique, 
+                en particulier dans l'univers du jeu vidéo. Je souhaite allier mes compétences techniques, 
+                ma créativité et mon esprit entrepreneurial pour développer des projets innovants.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="background: rgba(30, 41, 59, 0.8); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                    <h3 style="color: var(--accent);">🚀 Entrepreneuriat</h3>
+                    <p style="color: var(--text-dark);">Créer et piloter mes propres projets technologiques</p>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.8); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                    <h3 style="color: var(--accent);">🎮 Jeu Vidéo</h3>
+                    <p style="color: var(--text-dark);">Développer des expériences ludiques innovantes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+        <div class="contact">
+            <h2>Restons en Contact</h2>
+            <p>N'hésitez pas à me contacter pour discuter de projets ou d'opportunités de collaboration</p>
+            <div class="contact-links">
+                <a href="mailto:tom.carion.vignaud@gmail.com" class="contact-link">
+                    <span>✉️</span>
+                    <span>tom.carion.vignaud@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/tom-carion-vignaud-737483351/" target="_blank" class="contact-link">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Reveal elements on scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+
+        // Animate timeline items on scroll
+        function animateTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineItems.forEach((item, index) => {
+                const rect = item.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.8) {
+                    setTimeout(() => {
+                        item.style.animationDelay = '0s';
+                        item.style.opacity = '1';
+                    }, index * 200);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateTimeline);
+        animateTimeline();
+
+        // Animate project cards
+        function animateProjects() {
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.8) {
+                    setTimeout(() => {
+                        card.style.animationDelay = `${index * 0.2}s`;
+                        card.style.opacity = '1';
+                    }, 100);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateProjects);
+        animateProjects();
+
+        // Animate skill categories
+        function animateSkills() {
+            const categories = document.querySelectorAll('.skill-category');
+            
+            categories.forEach((category, index) => {
+                const rect = category.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.8) {
+                    setTimeout(() => {
+                        category.style.animationDelay = `${index * 0.2}s`;
+                        category.style.opacity = '1';
+                    }, 100);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateSkills);
+        animateSkills();
+    </script>
+</body>
+</html>
