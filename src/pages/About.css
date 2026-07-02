@@ -1,0 +1,264 @@
+.about-page {
+  padding-top: 140px;
+  max-width: 950px;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bio-overview {
+  padding: 40px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 600px) {
+  .bio-overview {
+    padding: 26px;
+  }
+}
+
+.bio-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.bio-top h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.bio-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.bio-text p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.bio-text p:last-child {
+  margin-bottom: 0;
+}
+
+.bio-text strong {
+  color: var(--text-primary);
+}
+
+/* EXPERIENCES GRID */
+.experiences-section {
+  margin-bottom: 70px;
+}
+
+.experiences-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 750px) {
+  .experiences-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.exp-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.exp-period {
+  font-weight: 700;
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.exp-place {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exp-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.exp-org {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-card p {
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* TIMELINE LIST */
+.timeline-section {
+  margin-bottom: 70px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-card {
+  padding: 30px;
+}
+
+@media (max-width: 600px) {
+  .timeline-card {
+    padding: 22px;
+  }
+}
+
+.timeline-year {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.1);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.timeline-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.timeline-place {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+}
+
+.timeline-desc {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* SKILLS GRID */
+.skills-section {
+  margin-bottom: 80px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 850px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-category {
+  padding: 30px;
+}
+
+.skill-category h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.skill-cat-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.skill-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-items li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: 16px;
+}
+
+.skill-items li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-weight: bold;
+}

@@ -1,0 +1,143 @@
+.experiences-page {
+  padding-top: 140px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.experiences-list {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  margin-bottom: 80px;
+}
+
+.experience-card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 650px) {
+  .experience-card {
+    padding: 24px;
+  }
+}
+
+.exp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.exp-type-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.exp-period-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.exp-title {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.exp-subinfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 22px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+
+.exp-org, .exp-loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-org {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.exp-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.exp-highlights-box {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.exp-highlights-box h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.exp-highlights-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-highlights-box li {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  padding-left: 18px;
+  position: relative;
+}
+
+.exp-highlights-box li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #34d399;
+  font-weight: bold;
+}
+
+.exp-footer-link {
+  margin-top: 10px;
+}
