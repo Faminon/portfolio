@@ -6,7 +6,7 @@ export default function About() {
   const timeline = [
     {
       year: "2026 – Présent",
-      title: "1ère Année du Cycle Ingénieur (ING1)",
+      title: "Cycle Ingénieur (ING1)",
       place: "EPITA — Toulouse",
       desc: "Entrée dans le cycle ingénieur (3ème année d'études supérieures au sein de l'école). Enseignements avancés en ingénierie logicielle, algorithmique, architecture des systèmes et développement web."
     },
