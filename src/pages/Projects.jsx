@@ -1,8 +1,21 @@
-import React from 'react';
-import { ExternalLink, Globe, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Globe, CheckCircle2, Maximize2, X } from 'lucide-react';
 import './Projects.css';
 
 export default function Projects() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const screenshots = [
+    {
+      src: "/www.epita-fc.fr_.png",
+      caption: "Aperçu général de l'interface officielle epita-fc.fr"
+    },
+    {
+      src: "/www.epita-fc.fr_ (1).png",
+      caption: "Vue détaillée des classements et du suivi sportif"
+    }
+  ];
+
   return (
     <div className="projects-page animate-fade-in">
       <div className="projects-header">
@@ -33,6 +46,36 @@ export default function Projects() {
           >
             Visiter le site epita-fc.fr <ExternalLink size={16} />
           </a>
+        </div>
+
+        {/* SCREENSHOTS GALLERY */}
+        <div className="project-gallery-section mt-5">
+          <h3>Aperçu visuel de la plateforme</h3>
+          <p className="gallery-desc">Cliquez sur une capture pour l'agrandir.</p>
+          <div className="screenshots-grid">
+            {screenshots.map((item, idx) => (
+              <div
+                key={idx}
+                className="screenshot-card"
+                onClick={() => setSelectedImage(item.src)}
+              >
+                <div className="screenshot-browser-header">
+                  <span className="dot dot-red"></span>
+                  <span className="dot dot-yellow"></span>
+                  <span className="dot dot-green"></span>
+                  <span className="browser-url">https://epita-fc.fr</span>
+                </div>
+                <div className="screenshot-img-wrapper">
+                  <img src={item.src} alt={item.caption} loading="lazy" />
+                  <div className="hover-zoom-overlay">
+                    <Maximize2 size={24} />
+                    <span>Agrandir</span>
+                  </div>
+                </div>
+                <div className="screenshot-caption">{item.caption}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="showcase-body mt-5">
@@ -75,6 +118,18 @@ export default function Projects() {
           </a>
         </div>
       </div>
+
+      {/* MODAL ZOOM */}
+      {selectedImage && (
+        <div className="lightbox-overlay animate-fade-in" onClick={() => setSelectedImage(null)}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={() => setSelectedImage(null)}>
+              <X size={24} />
+            </button>
+            <img src={selectedImage} alt="Capture agrandie epita-fc.fr" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
