@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link to="/" className="footer-logo" onClick={scrollToTop}>
-              Tom Carion-Vignaud
+              Tom Carion Vignaud
             </Link>
             <p className="footer-bio">
               Élève ingénieur en 1ère année du cycle ingénieur à l'EPITA Toulouse. Passionné par l'ingénierie logicielle et le développement web.

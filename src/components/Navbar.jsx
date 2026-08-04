@@ -26,7 +26,7 @@ export default function Navbar() {
     <header className={`navbar-header animate-fade-in ${scrolled ? 'navbar-scrolled' : ''}`}>
       <nav className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={() => setMobileMenuOpen(false)}>
-          <span className="logo-text">Tom Carion-Vignaud</span>
+          <span className="logo-text">Tom Carion Vignaud</span>
           <span className="logo-subtext">Étudiant Ingénieur — EPITA</span>
         </Link>
 
