@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { ExternalLink, Globe, CheckCircle2, Maximize2, X } from 'lucide-react';
+import { ExternalLink, Globe, Maximize2, X } from 'lucide-react';
+import { useScrollReveals } from '../hooks/useScrollReveals';
 import './Projects.css';
 
 export default function Projects() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const revealRef = useScrollReveals();
 
   const screenshots = [
     {
@@ -17,16 +19,16 @@ export default function Projects() {
   ];
 
   return (
-    <div className="projects-page animate-fade-in">
+    <div className="projects-page animate-fade-in" ref={revealRef}>
       <div className="projects-header">
-        <span className="page-tag">RÉALISATION WEB & INGÉNIERIE</span>
+        <span className="eyebrow">Réalisation web &amp; ingénierie</span>
         <h1 className="page-title">Site Web EPITA FC</h1>
         <p className="page-subtitle">
           Conception et développement du site web officiel du club de football de l'EPITA.
         </p>
       </div>
 
-      <div className="project-showcase glass-card">
+      <div className="project-showcase flat-card" data-reveal>
         <div className="showcase-meta">
           <span>Rôle : <strong>Concepteur & Lead Developer</strong></span>
           <span>Technologies : <strong>React, Web Moderne & Responsive Design</strong></span>
@@ -52,7 +54,7 @@ export default function Projects() {
         <div className="project-gallery-section mt-5">
           <h3>Aperçu visuel de la plateforme</h3>
           <p className="gallery-desc">Cliquez sur une capture pour l'agrandir.</p>
-          <div className="screenshots-grid">
+          <div className="screenshots-grid" data-reveal-group>
             {screenshots.map((item, idx) => (
               <div
                 key={idx}
@@ -87,7 +89,7 @@ export default function Projects() {
             Cette application web permet de centraliser en temps réel l'ensemble des compétitions de football universitaires : plannings des rencontres, scores en direct, classements des poules et statistiques des équipes.
           </p>
 
-          <div className="project-grid-features">
+          <div className="project-grid-features" data-reveal-group>
             <div className="feature-box">
               <h4>📅 Gestion du Calendrier</h4>
               <p>Affichage centralisé des dates, horaires et terrains pour toutes les équipes engagées dans la compétition.</p>

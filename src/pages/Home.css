@@ -1,5 +1,5 @@
 .home-page {
-  padding-top: 140px;
+  padding-top: 150px;
   max-width: 1000px;
   margin: 0 auto;
   padding-left: 5%;
@@ -8,26 +8,27 @@
 
 .hero-section {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 90px;
 }
 
 .hero-badge {
   display: inline-block;
-  padding: 6px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 7px 18px;
+  background: var(--accent-ink);
   border: 1px solid var(--border-color);
   border-radius: 30px;
   font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin-bottom: 28px;
 }
 
 .hero-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-weight: 600;
   letter-spacing: -1.5px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   color: var(--text-primary);
 }
 
@@ -46,7 +47,7 @@
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
@@ -55,7 +56,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
@@ -66,19 +67,21 @@
   gap: 6px;
   color: var(--text-secondary);
   text-decoration: none;
+  font-weight: 600;
   transition: color 0.2s;
 }
 
 .social-link:hover {
-  color: var(--text-primary);
+  color: var(--accent-dark);
 }
 
 /* PILLARS */
 .pillars-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 80px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 90px;
 }
 
 @media (max-width: 768px) {
@@ -87,24 +90,43 @@
   }
 }
 
-.pillar-card {
-  padding: 30px;
+.pillar-item {
+  padding: 36px 30px;
   text-align: left;
+  border-right: 1px solid var(--border-color);
 }
 
-.pillar-icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
+.pillar-item:last-child {
+  border-right: none;
 }
 
-.pillar-card h3 {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 700;
+@media (max-width: 768px) {
+  .pillar-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .pillar-item:last-child {
+    border-bottom: none;
+  }
+}
+
+.pillar-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.pillar-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
-.pillar-card p {
+.pillar-item p {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.7;
@@ -116,7 +138,7 @@
 }
 
 .highlight-card {
-  padding: 45px;
+  padding: 48px;
   text-align: left;
 }
 
@@ -126,26 +148,18 @@
   }
 }
 
-.highlight-tag {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-  letter-spacing: 1.5px;
-  margin-bottom: 12px;
-}
-
 .highlight-card h2 {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
 .highlight-desc {
   color: var(--text-secondary);
   font-size: 1.05rem;
   max-width: 700px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .highlight-list {
@@ -153,7 +167,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .highlight-list li {
@@ -164,9 +178,59 @@
 }
 
 .check-icon {
-  color: #34d399;
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
-.mt-4 {
-  margin-top: 16px;
+.highlight-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* CONTACT CTA */
+.contact-cta-section {
+  margin: 90px 0 40px;
+}
+
+.contact-cta {
+  background: var(--border-strong);
+  color: #fff;
+  border-radius: 4px;
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.contact-cta .eyebrow {
+  color: var(--accent);
+}
+
+.contact-cta h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.contact-cta p {
+  color: #c9c8c1;
+  font-size: 1rem;
+}
+
+.contact-cta-btn {
+  flex-shrink: 0;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-cta-btn:hover {
+  background: #fff;
+  color: var(--text-primary);
+  border-color: #fff;
+  box-shadow: 4px 4px 0 var(--accent);
 }

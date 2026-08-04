@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { Linkedin, Github } from './Icons';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import './Navbar.css';
+
+const links = [
+  { to: '/', label: 'Présentation' },
+  { to: '/about', label: 'Parcours' },
+  { to: '/experiences', label: 'Expérience Pro' },
+  { to: '/projects', label: 'Projet' },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,52 +23,28 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`navbar-header ${scrolled ? 'navbar-scrolled' : ''}`}>
+    <header className={`navbar-header animate-fade-in ${scrolled ? 'navbar-scrolled' : ''}`}>
       <nav className="navbar-container">
-        {/* Brand Name */}
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={() => setMobileMenuOpen(false)}>
           <span className="logo-text">Tom Carion-Vignaud</span>
-          <span className="logo-subtext">Étudiant Ingénieur EPITA</span>
+          <span className="logo-subtext">Étudiant Ingénieur — EPITA</span>
         </Link>
 
-        {/* Desktop Nav Links */}
         <div className="navbar-links">
-          <NavLink
-            to="/"
-            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-          >
-            Présentation
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-          >
-            Mon Parcours
-          </NavLink>
-          <NavLink
-            to="/experiences"
-            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-          >
-            Expérience Pro
-          </NavLink>
-          <NavLink
-            to="/projects"
-            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-          >
-            Projet epita-fc.fr
-          </NavLink>
+          {links.map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
+              {l.label}
+            </NavLink>
+          ))}
         </div>
 
-        {/* Social Buttons */}
         <div className="navbar-actions">
-          <a
-            href="https://www.linkedin.com/in/tom-carion-vignaud-737483351"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-btn"
-            title="LinkedIn"
-          >
-            <Linkedin size={18} />
+          <a href="mailto:tom.carion.vignaud@gmail.com" className="nav-contact-btn">
+            Me contacter <ArrowUpRight size={15} />
           </a>
 
           <button
@@ -75,37 +57,25 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="mobile-menu animate-fade-in">
-          <NavLink
-            to="/"
+          {links.map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              onClick={() => setMobileMenuOpen(false)}
+              className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
+            >
+              {l.label}
+            </NavLink>
+          ))}
+          <a
+            href="mailto:tom.carion.vignaud@gmail.com"
+            className="mobile-link mobile-link-accent"
             onClick={() => setMobileMenuOpen(false)}
-            className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
           >
-            Présentation
-          </NavLink>
-          <NavLink
-            to="/about"
-            onClick={() => setMobileMenuOpen(false)}
-            className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
-          >
-            Mon Parcours
-          </NavLink>
-          <NavLink
-            to="/experiences"
-            onClick={() => setMobileMenuOpen(false)}
-            className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
-          >
-            Expérience Pro
-          </NavLink>
-          <NavLink
-            to="/projects"
-            onClick={() => setMobileMenuOpen(false)}
-            className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
-          >
-            Projet epita-fc.fr
-          </NavLink>
+            Me contacter
+          </a>
         </div>
       )}
     </header>

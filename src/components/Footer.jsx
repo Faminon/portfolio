@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
-import { Linkedin, Github } from './Icons';
+import { Linkedin } from './Icons';
 import './Footer.css';
 
 export default function Footer() {
@@ -21,7 +21,7 @@ export default function Footer() {
               Élève ingénieur en 1ère année du cycle ingénieur à l'EPITA Toulouse. Passionné par l'ingénierie logicielle et le développement web.
             </p>
             <div className="footer-location">
-              <MapPin size={16} className="location-icon" />
+              <MapPin size={15} className="location-icon" />
               <span>Mougins / Toulouse</span>
             </div>
           </div>
@@ -35,9 +35,10 @@ export default function Footer() {
           </div>
 
           <div className="footer-links">
-            <h4>Réseaux</h4>
+            <h4>Contact</h4>
+            <a href="mailto:tom.carion.vignaud@gmail.com">tom.carion.vignaud@gmail.com</a>
             <a href="https://www.linkedin.com/in/tom-carion-vignaud-737483351" target="_blank" rel="noopener noreferrer">
-              <Linkedin size={16} /> LinkedIn
+              <Linkedin size={15} /> LinkedIn
             </a>
           </div>
         </div>

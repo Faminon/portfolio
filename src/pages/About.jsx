@@ -1,8 +1,13 @@
 import React from 'react';
-import { User, Globe, MapPin, Award, CheckCircle2 } from 'lucide-react';
+import { Globe, MapPin } from 'lucide-react';
+import { useScrollReveals } from '../hooks/useScrollReveals';
+import { useTimelineDraw } from '../hooks/useTimelineDraw';
 import './About.css';
 
 export default function About() {
+  const revealRef = useScrollReveals();
+  const timelineRef = useTimelineDraw();
+
   const timeline = [
     {
       year: "2026 – Présent",
@@ -30,18 +35,51 @@ export default function About() {
     }
   ];
 
+  const skills = [
+    {
+      title: 'Développement Web',
+      desc: "Conception d'interfaces modernes, intuitives et performantes.",
+      items: [
+        'HTML5, CSS3 & JavaScript / TypeScript',
+        'React, Vite & écosystème front-end',
+        "Node.js & intégration d'API",
+        'Design adaptatif (Responsive Web Design)',
+      ],
+    },
+    {
+      title: 'Ingénierie Logicielle',
+      desc: 'Fondamentaux scientifiques acquis au cours du cursus EPITA.',
+      items: [
+        'Algorithmique & structures de données',
+        'Programmation en C et C++',
+        'Modélisation & bases de données SQL',
+        'Architecture logicielle & rigueur de code',
+      ],
+    },
+    {
+      title: 'Savoir-être & Outils',
+      desc: 'Atouts relationnels et environnement technique.',
+      items: [
+        'Anglais technique et communication internationale',
+        'Adaptabilité & autonomie (Échange UQAC Canada)',
+        'Travail en équipe & méthodologie agile',
+        'Outils de versioning sous Git & GitHub',
+      ],
+    },
+  ];
+
   return (
-    <div className="about-page animate-fade-in">
+    <div className="about-page animate-fade-in" ref={revealRef}>
       <div className="about-header">
-        <span className="page-tag">CURSUS & FORMATION</span>
-        <h1 className="page-title">Mon <span className="gradient-text">Parcours</span> Académique</h1>
+        <span className="eyebrow">Cursus &amp; Formation</span>
+        <h1 className="page-title">Mon <span className="accent-text">Parcours</span> Académique</h1>
         <p className="page-subtitle">
           Retrouvez les étapes clés de ma scolarité, depuis le lycée à Cannes jusqu'au cycle ingénieur à l'EPITA Toulouse, en passant par mon semestre au Canada.
         </p>
       </div>
 
       {/* BIO OVERVIEW */}
-      <section className="bio-overview glass-card">
+      <section className="bio-overview flat-card" data-reveal>
         <div className="bio-top">
           <h2>Profil Étudiant Ingénieur</h2>
           <div className="bio-tags">
@@ -62,14 +100,21 @@ export default function About() {
 
       {/* TIMELINE */}
       <section className="timeline-section">
-        <h2 className="section-title">Chronologie <span className="gradient-text">Scolaire & Universitaire</span></h2>
-        <div className="timeline-list">
+        <h2 className="section-title">Chronologie <span className="accent-text">scolaire &amp; universitaire</span></h2>
+        <div className="timeline-list" ref={timelineRef}>
+          <div className="timeline-track" />
+          <div className="timeline-line" data-timeline-line />
           {timeline.map((item, idx) => (
-            <div key={idx} className="timeline-card glass-card">
-              <span className="timeline-year">{item.year}</span>
-              <h3>{item.title}</h3>
-              <p className="timeline-place"><MapPin size={14} /> {item.place}</p>
-              <p className="timeline-desc">{item.desc}</p>
+            <div key={idx} className="timeline-row" data-reveal>
+              <div className="timeline-marker">
+                <span className="timeline-dot" />
+                <span className="timeline-year">{item.year}</span>
+              </div>
+              <div className="timeline-content">
+                <h3>{item.title}</h3>
+                <p className="timeline-place"><MapPin size={13} /> {item.place}</p>
+                <p className="timeline-desc">{item.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -77,41 +122,20 @@ export default function About() {
 
       {/* SKILLS OVERVIEW */}
       <section className="skills-section">
-        <h2 className="section-title">Domaines de <span className="gradient-text">Compétence</span></h2>
+        <h2 className="section-title">Domaines de <span className="accent-text">compétence</span></h2>
 
-        <div className="skills-grid">
-          <div className="skill-category glass-card">
-            <h3>🌐 Développement Web</h3>
-            <p className="skill-cat-desc">Conception d'interfaces modernes, intuitives et performantes.</p>
-            <ul className="skill-items">
-              <li>HTML5, CSS3 & JavaScript / TypeScript</li>
-              <li>React, Vite & écosystème front-end</li>
-              <li>Node.js & intégration d'API</li>
-              <li>Design adaptatif (Responsive Web Design)</li>
-            </ul>
-          </div>
-
-          <div className="skill-category glass-card">
-            <h3>⚙️ Ingénierie Logicielle</h3>
-            <p className="skill-cat-desc">Fondamentaux scientifiques acquis au cours du cursus EPITA.</p>
-            <ul className="skill-items">
-              <li>Algorithmique & structures de données</li>
-              <li>Programmation en C et C++</li>
-              <li>Modélisation & bases de données SQL</li>
-              <li>Architecture logicielle & rigueur de code</li>
-            </ul>
-          </div>
-
-          <div className="skill-category glass-card">
-            <h3>🌍 Savoir-être & Outils</h3>
-            <p className="skill-cat-desc">Atouts relationnels et environnement technique.</p>
-            <ul className="skill-items">
-              <li>Anglais technique et communication internationale</li>
-              <li>Adaptabilité & autonomie (Échange UQAC Canada)</li>
-              <li>Travail en équipe & méthodologie agile</li>
-              <li>Outils de versioning sous Git & GitHub</li>
-            </ul>
-          </div>
+        <div className="skills-grid" data-reveal-group>
+          {skills.map((cat) => (
+            <div className="skill-category" key={cat.title}>
+              <h3>{cat.title}</h3>
+              <p className="skill-cat-desc">{cat.desc}</p>
+              <ul className="skill-items">
+                {cat.items.map((it) => (
+                  <li key={it}>{it}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
     </div>

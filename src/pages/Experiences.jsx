@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Briefcase, MapPin, Calendar, Maximize2, X } from 'lucide-react';
+import { useScrollReveals } from '../hooks/useScrollReveals';
 import './Experiences.css';
 
 export default function Experiences() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const revealRef = useScrollReveals();
 
   const cannesPhotos = [
     { src: "/IMG_8264.JPEG", caption: "En situation au Cannes Lions" },
@@ -30,10 +32,10 @@ export default function Experiences() {
   ];
 
   return (
-    <div className="experiences-page animate-fade-in">
+    <div className="experiences-page animate-fade-in" ref={revealRef}>
       <div className="page-header">
-        <span className="page-tag">RÉALISATIONS PROFESSIONNELLES</span>
-        <h1 className="page-title">Mon Expérience <span className="gradient-text">Professionnelle</span></h1>
+        <span className="eyebrow">Réalisations professionnelles</span>
+        <h1 className="page-title">Mon Expérience <span className="accent-text">Professionnelle</span></h1>
         <p className="page-subtitle">
           Découvrez mon expérience significative acquise lors du prestigieux festival international Cannes Lions.
         </p>
@@ -41,7 +43,7 @@ export default function Experiences() {
 
       <div className="experiences-list">
         {experiencesList.map((exp, index) => (
-          <div key={index} className="experience-card glass-card">
+          <div key={index} className="experience-card flat-card" data-reveal>
             <div className="exp-card-header">
               <div className="exp-meta-left">
                 <span className="exp-type-badge">{exp.type}</span>
@@ -55,7 +57,7 @@ export default function Experiences() {
 
             <h2 className="exp-title">{exp.title}</h2>
             <div className="exp-subinfo">
-              <span className="exp-org"><Briefcase size={16} className="text-cyan" /> {exp.organisation}</span>
+              <span className="exp-org"><Briefcase size={16} className="text-accent" /> {exp.organisation}</span>
               <span className="exp-loc"><MapPin size={16} /> {exp.location}</span>
             </div>
 
@@ -64,7 +66,7 @@ export default function Experiences() {
               <div className="exp-photo-showcase mt-4 mb-4">
                 <h4>📸 Souvenirs & immersion en images</h4>
                 <p className="exp-photo-desc">Cliquez sur une photo pour l'afficher en plein écran.</p>
-                <div className="exp-photos-grid">
+                <div className="exp-photos-grid" data-reveal-group>
                   {exp.photos.map((photo, pIdx) => (
                     <div 
                       key={pIdx} 

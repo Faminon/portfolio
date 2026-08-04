@@ -1,5 +1,5 @@
 .experiences-page {
-  padding-top: 140px;
+  padding-top: 150px;
   max-width: 950px;
   margin: 0 auto;
   padding-left: 5%;
@@ -19,7 +19,7 @@
 }
 
 .experience-card {
-  padding: 40px;
+  padding: 42px;
 }
 
 @media (max-width: 600px) {
@@ -38,13 +38,14 @@
 }
 
 .exp-type-badge {
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--accent-primary);
+  background: var(--accent-ink);
+  color: var(--accent-dark);
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .exp-period-badge {
@@ -57,11 +58,11 @@
 }
 
 .exp-title {
-  font-family: var(--font-heading);
-  font-size: 1.7rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .exp-subinfo {
@@ -79,8 +80,12 @@
   gap: 6px;
 }
 
+.text-accent {
+  color: var(--accent-dark);
+}
+
 .exp-org {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -93,16 +98,16 @@
 
 /* CANNES LIONS PHOTO GALLERY */
 .exp-photo-showcase {
-  background: rgba(15, 23, 42, 0.5);
+  background: var(--bg-alt);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
+  border-radius: 4px;
   padding: 24px;
 }
 
 .exp-photo-showcase h4 {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 4px;
 }
@@ -134,12 +139,12 @@
 .exp-photo-card {
   position: relative;
   height: 180px;
-  border-radius: 10px;
+  border-radius: 3px;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #0f172a;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  background: var(--surface);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .exp-photo-card img {
@@ -151,8 +156,7 @@
 
 .exp-photo-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 0 var(--border-color);
 }
 
 .exp-photo-card:hover img {
@@ -165,8 +169,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(3px);
+  background: rgba(20, 20, 15, 0.55);
+  backdrop-filter: blur(2px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,18 +192,20 @@
 
 /* HIGHLIGHTS BOX */
 .exp-highlights-box {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 24px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 26px;
 }
 
 .exp-highlights-box h4 {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .exp-highlights-box ul {
@@ -215,14 +221,14 @@
   color: var(--text-secondary);
   font-size: 0.95rem;
   position: relative;
-  padding-left: 20px;
+  padding-left: 22px;
 }
 
 .exp-highlights-box li::before {
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--accent-primary);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -232,4 +238,56 @@
 
 .mb-4 {
   margin-bottom: 20px;
+}
+
+/* LIGHTBOX MODAL */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 8, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 90vh;
+  animation: lightboxIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes lightboxIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 4px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
